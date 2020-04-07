@@ -3,24 +3,16 @@ package com.rflores.sportyworld;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.nio.file.AccessMode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Scanner;
+
 
 public class Controlador {
 
