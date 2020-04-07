@@ -1,0 +1,8 @@
+Correr;7.2
+Andar;4.5
+Bicicleta;8.0
+
+bilis;
+pancreas,7.0
+pelota;pelota
+pelotilla;7.2;3.2

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyPadre"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="?attr/dialogCornerRadius"
+    android:background="#0B0A0A"
+    android:gravity="center|center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/lyAzul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:background="#3F51B5"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/lyMorado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="?attr/dialogCornerRadius"
+            android:layout_weight="5"
+            android:background="#9C27B0">
+
+            <LinearLayout
+                android:id="@+id/lyGris"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="?attr/listPreferredItemPaddingEnd"
+                android:background="#514F4F"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lyIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="?android:attr/scrollbarSize"
+                    android:background="#03A9F4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/LAMinutos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minutos" />
+
+                    <EditText
+                        android:id="@+id/TEMinutos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Introduzca Min"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/LAKgr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kilogramos" />
+
+                    <EditText
+                        android:id="@+id/TEKgr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Introduzca Kgr"
+                        android:inputType="number" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFEB3B"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/CBEjercicio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FF5722">
+
+            <TextView
+                android:id="@+id/TEResultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resultado:" />
+
+            <TextView
+                android:id="@+id/LAResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="KCal" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:background="#EA0909"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/LAUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Usuario:" />
+
+        <EditText
+            android:id="@+id/TEUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="Introduzca usuario"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/LAPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Password:" />
+
+        <EditText
+            android:id="@+id/TEPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="Introduzca password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:background="@android:color/holo_green_dark"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/btCalcular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btCalcular"
+            android:text="Calcular" />
+
+        <Button
+            android:id="@+id/btSalir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btSalir"
+            android:text="Salir" />
+    </LinearLayout>
+</LinearLayout>
