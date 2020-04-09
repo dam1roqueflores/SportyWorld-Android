@@ -1,8 +1,10 @@
-package com.rflores.sportyworld;
+package com.rflores.SportyAndroid;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -122,7 +124,8 @@ public class Controlador {
                 PrintWriter impresor = new PrintWriter(log,true);
                 impresor.write(mensaje);
                 impresor.close();
-
+                Toast miT = Toast.makeText(miMainActivity,mensaje,Toast.LENGTH_LONG);
+                miT.show();
             } catch (Exception ex) {
                 System.out.println("Mensaje de la excepción: " + ex.getMessage());
             }

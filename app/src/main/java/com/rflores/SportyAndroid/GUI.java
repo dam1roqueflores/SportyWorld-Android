@@ -1,4 +1,4 @@
-package com.rflores.sportyworld;
+package com.rflores.SportyAndroid;
 
 
 import android.widget.EditText;

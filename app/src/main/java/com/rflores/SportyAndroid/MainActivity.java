@@ -1,8 +1,7 @@
-package com.rflores.sportyworld;
+package com.rflores.SportyAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
