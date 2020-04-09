@@ -124,8 +124,10 @@ public class Controlador {
                 PrintWriter impresor = new PrintWriter(log,true);
                 impresor.write(mensaje);
                 impresor.close();
+                // creamos Toast
                 Toast miT = Toast.makeText(miMainActivity,mensaje,Toast.LENGTH_LONG);
                 miT.show();
+
             } catch (Exception ex) {
                 System.out.println("Mensaje de la excepción: " + ex.getMessage());
             }
