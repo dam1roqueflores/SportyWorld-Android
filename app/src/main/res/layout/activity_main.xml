@@ -13,8 +13,9 @@
     <LinearLayout
         android:id="@+id/LLMinutos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
         android:background="#3F51B5"
         android:gravity="center">
 
@@ -39,9 +40,11 @@
     <LinearLayout
         android:id="@+id/LLKgr"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="?attr/dialogCornerRadius"
-        android:background="#9C27B0">
+        android:layout_weight="1"
+        android:background="#9C27B0"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/LAKgr"
@@ -64,33 +67,39 @@
     <Spinner
         android:id="@+id/CBEjercicio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/LLResultado"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#FF5722"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/TEResultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="Resultado:" />
 
         <TextView
             android:id="@+id/LAResultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="KCal" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btCalcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:onClick="btCalcular"
         android:text="Calcular" />
 

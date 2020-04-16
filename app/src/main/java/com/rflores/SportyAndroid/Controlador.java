@@ -31,32 +31,37 @@ public class Controlador {
     //Colección con los tipos de ejercicios disponibles
     private TipoEjercicio TEColeccion;
     private MainActivity miMainActivity;
+    // instanciado de la clase Singleton, variable estática y privada para asegurar uns sola instancia del controlador
+    static private Controlador controlador=null;
 
     ///////////////////////////////////////
-    // Comportamientos
+    // COMPORTAMIENTOS
     ///////////////////////////////////////
-
     //constructor
-    public Controlador(MainActivity mainActivity) {
+    // constructor privado para asegurar una sola instancia del controlador
+    private Controlador(MainActivity mainActivity) {
         TEColeccion = new TipoEjercicio();
         miMainActivity=mainActivity;
     }
     /////////////////////////////////////
     // resto de comportamientos
     /////////////////////////////////////
+    // comportamiento singleton, estático y público para poder acceder al constructor del controlador singleton
+    static public Controlador getControlador(MainActivity miMainActivity){
+        if (controlador==null) {controlador=new Controlador(miMainActivity);        }
+        return controlador;
+    }
+
     //comportamiento para devolver las KCAL de una determinada actividad realizada
     public String calcularKCal(int minutos, float kilos, String descrEjer) {
-
         String resultado;
         Ejercicio miEjercicio;
-
 
         //dado los kg, minutos y el ejercicio seleccionado, creamos los objetos necesarios
         miEjercicio = TEColeccion.getEjercicioByDescr(descrEjer);
 
         //y después a esos objetos les pedimos trabajar
         resultado = miEjercicio.calcularKCal(minutos, kilos);
-
 
         //el resultado del trabajo lo ponemos en la pantalla, concretamente en el LBResultado
         return resultado;
@@ -82,12 +87,9 @@ public class Controlador {
 
     // Carga los datos del fichero
     private void cargarDatos()  {
-
-
         //variables para fechas
         Date fecha =new Date();
         DateFormat timestamp  = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        // variables para ficghero log
 
         // otras variables
         String mensaje="";
@@ -116,7 +118,6 @@ public class Controlador {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
 
-
         //escribimos log
         if (mensaje != "") {
             try {
@@ -127,7 +128,6 @@ public class Controlador {
                 // creamos Toast
                 Toast miT = Toast.makeText(miMainActivity,mensaje,Toast.LENGTH_LONG);
                 miT.show();
-
             } catch (Exception ex) {
                 System.out.println("Mensaje de la excepción: " + ex.getMessage());
             }
@@ -135,10 +135,8 @@ public class Controlador {
         }
     }
 
-
     // comprobar errores
     private String comprobarErrores(String entrada) {
-
         String resultado;
         String[] listaParametros = entrada.split(";");
 
@@ -169,7 +167,7 @@ public class Controlador {
         }
         return resultado;
     }
-// comprueba el float
+    // comprueba el float
     private boolean comprobarFloat (String unFloat) {
         try {
             float num=Float.parseFloat(unFloat);
@@ -184,11 +182,5 @@ public class Controlador {
     public void dispose(){
         this.dispose();
     }
-    // escribimos el log de errores
-    private void escribeLog(String error, int numLinea) {
 
-
-
-
-    }
 }

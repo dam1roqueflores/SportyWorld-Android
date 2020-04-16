@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //creamos el controlador
-        miControlador=new Controlador(this);
+        //creamos el controlador através del comportamiento getControlador del método Singleton
+         Controlador miControlador = Controlador.getControlador(this);
         // creamos el GUI
         miGUI=new GUI(this);
 
