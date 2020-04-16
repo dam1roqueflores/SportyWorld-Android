@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     ////////////////////////////////////////////////
@@ -36,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
     public void btCalcular(View view) {
         int minutos;
         float kilos;
-        kilos=Float.parseFloat(String.valueOf(miGUI.getTkilos().getText()));
-        minutos=Integer.parseInt(String.valueOf(miGUI.getTminutos().getText()));
-        String actividad=(String) miGUI.getCactividad().getSelectedItem();
-
-
-        miGUI.setLResultado(miControlador.calcularKCal(minutos, kilos, actividad));
+        if (miGUI.getTminutos().getText().toString().length()==0 || miGUI.getTkilos().getText().toString().length()==0) {
+            Toast miToast = Toast.makeText(this,"Minutos y Kilos no pueden ser nulos",Toast.LENGTH_LONG);
+            miToast.show();
+        } else {
+            kilos = Float.parseFloat(String.valueOf(miGUI.getTkilos().getText()));
+            minutos = Integer.parseInt(String.valueOf(miGUI.getTminutos().getText()));
+            String actividad = (String) miGUI.getCactividad().getSelectedItem();
+            miGUI.setLResultado(miControlador.calcularKCal(minutos, kilos, actividad));
+        }
     }
 
 }

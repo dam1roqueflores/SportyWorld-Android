@@ -22,15 +22,15 @@ public class Controlador {
     //	CONSTANTES
     ///////////////////////////////////////
     //Fichero con los datos
-    private final String FILE_DATOS = "Data.txt";
-    private final String FILE_LOG = "log.txt";
+    static private final String FILE_DATOS = "Data.txt";
+    static private final String FILE_LOG = "log.txt";
     ////////////////////////////////////////
     //Estados
     ////////////////////////////////////////
 
     //Colección con los tipos de ejercicios disponibles
-    private TipoEjercicio TEColeccion;
-    private MainActivity miMainActivity;
+    static private TipoEjercicio TEColeccion;
+    static private MainActivity miMainActivity;
     // instanciado de la clase Singleton, variable estática y privada para asegurar uns sola instancia del controlador
     static private Controlador controlador=null;
 
@@ -53,7 +53,7 @@ public class Controlador {
     }
 
     //comportamiento para devolver las KCAL de una determinada actividad realizada
-    public String calcularKCal(int minutos, float kilos, String descrEjer) {
+    static public String calcularKCal(int minutos, float kilos, String descrEjer) {
         String resultado;
         Ejercicio miEjercicio;
 
@@ -68,7 +68,7 @@ public class Controlador {
     }
 
     // inicia datos de spinner
-    public void iniciaDatos (Spinner miCombo) {
+    static public void iniciaDatos (Spinner miCombo) {
         int i=0;
         ArrayList<String> strOpciones = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class Controlador {
     }
 
     // Carga los datos del fichero
-    private void cargarDatos()  {
+    static private void cargarDatos()  {
         //variables para fechas
         Date fecha =new Date();
         DateFormat timestamp  = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -136,7 +136,7 @@ public class Controlador {
     }
 
     // comprobar errores
-    private String comprobarErrores(String entrada) {
+   static private String comprobarErrores(String entrada) {
         String resultado;
         String[] listaParametros = entrada.split(";");
 
@@ -168,7 +168,7 @@ public class Controlador {
         return resultado;
     }
     // comprueba el float
-    private boolean comprobarFloat (String unFloat) {
+    static private boolean comprobarFloat (String unFloat) {
         try {
             float num=Float.parseFloat(unFloat);
         }
