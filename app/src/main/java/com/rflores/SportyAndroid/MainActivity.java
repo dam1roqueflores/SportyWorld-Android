@@ -2,6 +2,7 @@ package com.rflores.SportyAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public void btSalir (View view) {
         System.exit(0);
     }
-
+    // Botón calcular resultado
     public void btCalcular(View view) {
         int minutos;
         float kilos;
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             String actividad = (String) miGUI.getCactividad().getSelectedItem();
             miGUI.setLResultado(miControlador.calcularKCal(minutos, kilos, actividad));
         }
+    }
+
+    // Botón Loguearse
+    public void BTLogin(View view) {
+        Intent miIntent = new Intent(this,LoginActivity.class);
+        startActivity(miIntent);
     }
 
 }

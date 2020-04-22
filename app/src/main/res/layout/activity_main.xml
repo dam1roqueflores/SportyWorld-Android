@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="?attr/dialogCornerRadius"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#3F51B5"
         android:gravity="center">
 
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="?attr/dialogCornerRadius"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#9C27B0"
         android:gravity="center">
 
@@ -68,13 +68,13 @@
         android:id="@+id/CBEjercicio"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="2" />
 
     <LinearLayout
         android:id="@+id/LLResultado"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#FF5722"
         android:gravity="center"
         android:orientation="horizontal">
@@ -99,8 +99,40 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:onClick="btCalcular"
         android:text="Calcular" />
+    <LinearLayout
+        android:id="@+id/LLUser"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#3F51B5"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/BTLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:onClick="BTLogin"
+            android:text="Login" />
+        <TextView
+            android:id="@+id/LALogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Minutos" />
+
+        <TextView
+            android:id="@+id/LAUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Sin Login" />
+
+    </LinearLayout>
 
 </LinearLayout>

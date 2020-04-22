@@ -24,12 +24,15 @@ public class Controlador {
     //Fichero con los datos
     static private final String FILE_DATOS = "Data.txt";
     static private final String FILE_LOG = "log.txt";
+    static private final String FILE_USUARIOS="user.txt";
+    static private final String FILE_LOG_USER = "logusr.txt";
     ////////////////////////////////////////
     //Estados
     ////////////////////////////////////////
 
     //Colección con los tipos de ejercicios disponibles
     static private TipoEjercicio TEColeccion;
+    static  private ListaUsuarios miListaUsuarios;
     static private MainActivity miMainActivity;
     // instanciado de la clase Singleton, variable estática y privada para asegurar uns sola instancia del controlador
     static private Controlador controlador=null;
@@ -41,6 +44,7 @@ public class Controlador {
     // constructor privado para asegurar una sola instancia del controlador
     private Controlador(MainActivity mainActivity) {
         TEColeccion = new TipoEjercicio();
+        miListaUsuarios=new ListaUsuarios();
         miMainActivity=mainActivity;
     }
     /////////////////////////////////////
@@ -51,7 +55,9 @@ public class Controlador {
         if (controlador==null) {controlador=new Controlador(miMainActivity);        }
         return controlador;
     }
-
+    static public Controlador getControlador(){
+        return controlador;
+    }
     //comportamiento para devolver las KCAL de una determinada actividad realizada
     static public String calcularKCal(int minutos, float kilos, String descrEjer) {
         String resultado;
@@ -85,7 +91,88 @@ public class Controlador {
         miCombo.setAdapter(adapter);
     }
 
-    // Carga los datos del fichero
+    // Carga los Usuarios
+    static private void cargarUsuarios()  {
+        //variables para fechas
+        Date fecha =new Date();
+        DateFormat timestamp  = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        // otras variables
+        String mensaje="";
+        int contador=1;
+        Usuario miUsuario;
+        String linea;
+
+        // recorremos fichero de lectura
+        try {
+            // Abrimos el fichero en Assets para lectura
+            InputStream miFichero = miMainActivity.getAssets().open(FILE_USUARIOS);
+            BufferedReader bfIn = new BufferedReader(new InputStreamReader(miFichero));
+            linea=bfIn.readLine();
+            while (linea!=null) {
+                if(comprobarErroresUser(linea)=="") {
+                    miUsuario= new Usuario(linea);
+                    miListaUsuarios.addUsuario(miUsuario);
+                } else {
+                    //guarda los mensajes para el log
+                    mensaje = mensaje + timestamp.format(fecha)+ " - Error en fichero "+FILE_USUARIOS+ " en la línea "+contador+": "+comprobarErrores(linea)+"\n";
+                }
+                linea=bfIn.readLine();
+                contador++;
+            }
+            miFichero.close();
+        } catch (Exception ex){
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+
+        //escribimos log Usuario
+        if (mensaje != "") {
+            try {
+                FileOutputStream log = miMainActivity.openFileOutput(FILE_LOG_USER,Context.MODE_APPEND);
+                PrintWriter impresor = new PrintWriter(log,true);
+                impresor.write(mensaje);
+                impresor.close();
+                // creamos Toast Usuario
+                Toast miT = Toast.makeText(miMainActivity,mensaje,Toast.LENGTH_LONG);
+                miT.show();
+            } catch (Exception ex) {
+                System.out.println("Mensaje de la excepción: " + ex.getMessage());
+            }
+
+        }
+    }
+
+    // comprobar errores de fichero usuarios
+    static private String comprobarErroresUser(String entrada) {
+        String resultado;
+        String[] listaParametros = entrada.split(";");
+
+        resultado = "";
+        //'linea vacia
+        if(entrada.isEmpty()) {
+            resultado = "Línea vacia";
+        } else {
+            //'hay al menos uno ;
+            if (listaParametros.length > 0) {
+                //'Hay más de dos ;
+                if (listaParametros.length>2) {
+                    resultado = "hay más de dos columnas";
+                } else {
+                    // solo una columna
+                    if (listaParametros.length==1 ) {
+                        //'solo hay una columna
+                        resultado = "Sólo hay una columna";
+                    } else {
+                        // todo correcto no hacemos nada
+                    }
+                }
+            }
+
+        }
+        return resultado;
+    }
+
+    // Carga los datos del fichero actividades
     static private void cargarDatos()  {
         //variables para fechas
         Date fecha =new Date();
@@ -118,7 +205,7 @@ public class Controlador {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
 
-        //escribimos log
+        //escribimos log Actividades
         if (mensaje != "") {
             try {
                 FileOutputStream log = miMainActivity.openFileOutput(FILE_LOG,Context.MODE_APPEND);
@@ -135,7 +222,7 @@ public class Controlador {
         }
     }
 
-    // comprobar errores
+    // comprobar errores de fichero actividades
    static private String comprobarErrores(String entrada) {
         String resultado;
         String[] listaParametros = entrada.split(";");
@@ -167,6 +254,7 @@ public class Controlador {
         }
         return resultado;
     }
+
     // comprueba el float
     static private boolean comprobarFloat (String unFloat) {
         try {
@@ -177,6 +265,25 @@ public class Controlador {
         }
         return true;
     }
+    // Comprobar el Login
+    public Boolean comprobarLogin (Usuario miUsuario) {
+
+        if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).toString().compareTo(miUsuario.getUsuario())==0){
+            //Si el usuario existe
+            if (miListaUsuarios.getUsuarioByDescr(miUsuario.getPasswd()).toString().compareTo(miUsuario.getPasswd())==0) {
+                // si la contraseña existe
+                return true;
+            } else {
+                // si la contraseña no existe
+                return false;
+            }
+        } else {
+            //  si no encuentra el usuario
+            return false;
+        }
+
+    }
+
 
     // dispose controlador
     public void dispose(){
