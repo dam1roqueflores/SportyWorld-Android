@@ -272,13 +272,13 @@ public class Controlador {
     // Comprobar el Login
     public Boolean comprobarLogin (Usuario miUsuario) {
 
-        if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).getUsuario().compareTo(miUsuario.getUsuario())==0){
+        if (miListaUsuarios.existeUser(miUsuario.getUsuario())){
             //Si el usuario existe
             if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).getPasswd().compareTo(miUsuario.getPasswd())==0) {
-                // si la contraseña existe
+                // si la contraseña es correcta
                 return true;
             } else {
-                // si la contraseña no existe
+                // si la contraseña no es correcta
                 return false;
             }
         } else {
