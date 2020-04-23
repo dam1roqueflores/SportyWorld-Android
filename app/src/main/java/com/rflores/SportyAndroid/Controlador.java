@@ -24,17 +24,19 @@ public class Controlador {
     //Fichero con los datos
     static private final String FILE_DATOS = "Data.txt";
     static private final String FILE_LOG = "log.txt";
-    static private final String FILE_USUARIOS="user.txt";
+    static private final String FILE_USUARIOS="users.txt";
     static private final String FILE_LOG_USER = "logusr.txt";
     ////////////////////////////////////////
     //Estados
     ////////////////////////////////////////
-
     //Colección con los tipos de ejercicios disponibles
     static private TipoEjercicio TEColeccion;
+    // gestión de Usuarios
     static  private ListaUsuarios miListaUsuarios;
+    static private Usuario miUsuario;
+    //
     static private MainActivity miMainActivity;
-    // instanciado de la clase Singleton, variable estática y privada para asegurar uns sola instancia del controlador
+    // instanciado de la clase Singleton, variable estática y privada para asegurar una sola instancia del controlador
     static private Controlador controlador=null;
 
     ///////////////////////////////////////
@@ -45,6 +47,7 @@ public class Controlador {
     private Controlador(MainActivity mainActivity) {
         TEColeccion = new TipoEjercicio();
         miListaUsuarios=new ListaUsuarios();
+        miUsuario=new Usuario(null);
         miMainActivity=mainActivity;
     }
     /////////////////////////////////////
@@ -73,13 +76,14 @@ public class Controlador {
         return resultado;
     }
 
-    // inicia datos de spinner
+    // inicia datos
     static public void iniciaDatos (Spinner miCombo) {
         int i=0;
         ArrayList<String> strOpciones = new ArrayList<>();
 
         try {
             cargarDatos();
+            cargarUsuarios();
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         }
@@ -268,9 +272,9 @@ public class Controlador {
     // Comprobar el Login
     public Boolean comprobarLogin (Usuario miUsuario) {
 
-        if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).toString().compareTo(miUsuario.getUsuario())==0){
+        if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).getUsuario().compareTo(miUsuario.getUsuario())==0){
             //Si el usuario existe
-            if (miListaUsuarios.getUsuarioByDescr(miUsuario.getPasswd()).toString().compareTo(miUsuario.getPasswd())==0) {
+            if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).getPasswd().compareTo(miUsuario.getPasswd())==0) {
                 // si la contraseña existe
                 return true;
             } else {
@@ -284,10 +288,22 @@ public class Controlador {
 
     }
 
-
     // dispose controlador
     public void dispose(){
         this.dispose();
     }
+    ////////////////////////////////////////////////////////
+    //      GETTERS
+    ////////////////////////////////////////////////////////
 
+    public static Usuario getMiUsuario() {
+        return miUsuario;
+    }
+
+    /////////////////////////////////////////////////////////////
+    //      SETTERS
+    ////////////////////////////////////////////////////////
+    public void setUsuario(Usuario unUsuario) {
+        miUsuario=unUsuario;
+    }
 }

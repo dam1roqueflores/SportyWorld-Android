@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Minutos" />
+            android:text="Usuario" />
 
         <EditText
             android:id="@+id/TEUsuario"
@@ -31,7 +31,7 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="Introduzca Usuario"
-            android:inputType="textShortMessage|number" />
+            android:inputType="text" />
 
     </LinearLayout>
 

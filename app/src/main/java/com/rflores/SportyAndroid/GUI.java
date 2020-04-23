@@ -11,12 +11,14 @@ public class GUI {
 // Parte del GUI
 
 
-
+//labels
     private TextView LResultado;
+    private TextView LUser;
 
+    // TextViews
     private EditText Tminutos;
     private EditText Tkilos;
-
+// spinner
     private Spinner Cactividad;
 
 
@@ -33,7 +35,9 @@ public class GUI {
         // definimos contexto
         miMainActivity= miContexto;
 
+        //definimos Labels
         LResultado=miContexto.findViewById(R.id.LAResultado);
+        LUser=miContexto.findViewById(R.id.LAUser);
 
         //Definimos los textfield
         Tminutos=miContexto.findViewById(R.id.TEMinutos);
@@ -63,5 +67,9 @@ public class GUI {
 ///////////////////////////////////////////////////////////
     public void setLResultado(String resultado) {
     LResultado.setText(resultado);
+    }
+
+    public void setLUser(String user) {
+        this.LUser.setText(user);
     }
 }

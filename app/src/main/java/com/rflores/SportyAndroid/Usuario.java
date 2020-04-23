@@ -12,9 +12,10 @@ public class Usuario {
     /////////////////////////////////
     //Constructor
     public Usuario (String serializado){
+        if (serializado!=null) {
         String[] listaParametros = serializado.split(";");
         usuario = listaParametros[0];
-        passwd = listaParametros[1];
+        passwd = listaParametros[1];}
     }
     ////////////////////////////////
     //Resto de comportamientos

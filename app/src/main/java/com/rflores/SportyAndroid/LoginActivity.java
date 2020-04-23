@@ -40,11 +40,13 @@ public class LoginActivity extends AppCompatActivity {
             // comprobamos login en fichero
             String serializado;
 
-            serializado=miTEPasswd+";"+miTEUsuario;
+            serializado=miTEUsuario.getText()+";"+miTEPasswd.getText();
             Usuario miUsuario= new Usuario(serializado);
             if (miControlador.comprobarLogin (miUsuario)==true){
-                // el login es correcto hay que pasar los datos al controlador y volver a MainActivity
-                
+                // el login es correcto hay que pasar los datos al controlador
+                miControlador.setUsuario(miUsuario);
+                //volvemos a Mainactivity
+                finish();
             } else {
                 // el login es incorrecto registramos el error
                 Toast miToast = Toast.makeText(this,"El Usuario no existe o la contraseña es incorrecta",Toast.LENGTH_LONG);

@@ -30,7 +30,7 @@ public class ListaUsuarios {
 
         //busco en la lista el que se llame igual. Empiezo por el primero y termino por el final
         while (!encontrado && contador < listaUsuarios.size()) {
-            if (listaUsuarios.get(contador).getUsuario() == descr) {
+            if (listaUsuarios.get(contador).getUsuario().compareTo(descr)==0) {
                 encontrado = true;
                 miUsuario = listaUsuarios.get(contador);
             } else {

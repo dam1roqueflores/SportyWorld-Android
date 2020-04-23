@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
          Controlador miControlador = Controlador.getControlador(this);
         // creamos el GUI
         miGUI=new GUI(this);
-
-        //
+        // cargamos datos en Spinner
         miControlador.iniciaDatos(miGUI.getCactividad());
     }
+
     // Añadimos Listener a los botones
     public void btSalir (View view) {
         System.exit(0);
@@ -49,8 +50,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        miGUI.setLUser(miControlador.getMiUsuario().getUsuario());
+    }
+
     // Botón Loguearse
     public void BTLogin(View view) {
+
         Intent miIntent = new Intent(this,LoginActivity.class);
         startActivity(miIntent);
     }
