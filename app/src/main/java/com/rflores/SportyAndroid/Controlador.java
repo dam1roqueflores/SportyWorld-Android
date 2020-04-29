@@ -33,7 +33,7 @@ public class Controlador {
     static private TipoEjercicio TEColeccion;
     // gestión de Usuarios
     static  private ListaUsuarios miListaUsuarios;
-    static private Usuario miUsuario;
+    static private String miUsuario;
     //
     static private MainActivity miMainActivity;
     // instanciado de la clase Singleton, variable estática y privada para asegurar una sola instancia del controlador
@@ -47,7 +47,7 @@ public class Controlador {
     private Controlador(MainActivity mainActivity) {
         TEColeccion = new TipoEjercicio();
         miListaUsuarios=new ListaUsuarios();
-        miUsuario=new Usuario(null);
+        miUsuario=null;
         miMainActivity=mainActivity;
     }
     /////////////////////////////////////
@@ -270,11 +270,13 @@ public class Controlador {
         return true;
     }
     // Comprobar el Login
-    public Boolean comprobarLogin (Usuario miUsuario) {
-
-        if (miListaUsuarios.existeUser(miUsuario.getUsuario())){
+    public Boolean comprobarLogin (String serializado) {
+        String[] listaParametros = serializado.split(";");
+        String miNombre = listaParametros[0];
+        String miPasswd = listaParametros[1];
+        if (existeUsuario(miNombre)){
             //Si el usuario existe
-            if (miListaUsuarios.getUsuarioByDescr(miUsuario.getUsuario()).getPasswd().compareTo(miUsuario.getPasswd())==0) {
+            if (getUserByDescr(miNombre).getPasswd().compareTo(miPasswd)==0) {
                 // si la contraseña es correcta
                 return true;
             } else {
@@ -288,6 +290,38 @@ public class Controlador {
 
     }
 
+    // comprueba si existe el usuario
+    public boolean existeUsuario (String miNombre){
+        return miListaUsuarios.existeUser(miNombre);
+    }
+
+    // devuelve usuario buscando por descripción
+    public Usuario getUserByDescr(String miNombreUsuario){
+        return miListaUsuarios.getUsuarioByDescr(miNombreUsuario);
+    }
+
+    // añadimos el nuevo usuario
+    public void addUsuario(Usuario miUsuario) {
+        String registro;
+
+        //  Añadimos nuevo usuario a la lista
+        miListaUsuarios.addUsuario(miUsuario);
+        //Añadimos nuevo usuario al fichero
+        registro = miUsuario.serializar();
+        try {
+
+            FileOutputStream log = miMainActivity.openFileOutput(FILE_USUARIOS,Context.MODE_APPEND);
+            PrintWriter impresor = new PrintWriter(log,true);
+            impresor.write(registro);
+            impresor.close();
+            // creamos Toast Usuario
+            Toast miT = Toast.makeText(miMainActivity,registro,Toast.LENGTH_LONG);
+            miT.show();
+        } catch (Exception ex) {
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+    }
+
     // dispose controlador
     public void dispose(){
         this.dispose();
@@ -296,14 +330,15 @@ public class Controlador {
     //      GETTERS
     ////////////////////////////////////////////////////////
 
-    public static Usuario getMiUsuario() {
+    public static String getMiUsuario() {
         return miUsuario;
     }
 
     /////////////////////////////////////////////////////////////
     //      SETTERS
     ////////////////////////////////////////////////////////
-    public void setUsuario(Usuario unUsuario) {
-        miUsuario=unUsuario;
+    public void setUsuario(String serializado) {
+       miUsuario =serializado;
     }
+
 }

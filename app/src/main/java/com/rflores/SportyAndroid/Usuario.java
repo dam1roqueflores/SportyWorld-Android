@@ -6,7 +6,10 @@ public class Usuario {
     /////////////////////////////////
     String usuario;
     String passwd;
-
+    String nombre;
+    String apellidos;
+    String dni;
+    String email;
     ////////////////////////////////
     //COMPORTAMIENTOS
     /////////////////////////////////
@@ -15,7 +18,16 @@ public class Usuario {
         if (serializado!=null) {
         String[] listaParametros = serializado.split(";");
         usuario = listaParametros[0];
-        passwd = listaParametros[1];}
+        passwd = listaParametros[1];
+        nombre = listaParametros[2];
+        apellidos = listaParametros[3];
+        dni = listaParametros[4];
+        email=listaParametros[5];
+        }
+    }
+
+    public String serializar (){
+        return usuario +";"+ passwd +";"+nombre +";"+apellidos +";"+dni +";"+email+"\n";
     }
     ////////////////////////////////
     //Resto de comportamientos

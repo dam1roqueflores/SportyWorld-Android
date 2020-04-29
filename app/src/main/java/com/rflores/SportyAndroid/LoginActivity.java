@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText miTEPasswd = findViewById(R.id.TEPasswd);
         EditText miTEUsuario = findViewById(R.id.TEUsuario);
         TextView miLAError = findViewById(R.id.LAError);
+        String serializado;
 
         // comprobamos que los campos no sean nulos
         if (miTEUsuario.getText().toString().length()==0 || miTEPasswd.getText().toString().length()==0) {
@@ -38,13 +39,12 @@ public class LoginActivity extends AppCompatActivity {
             miLAError.setText("Usuario y Contraseña no pueden ser nulos");
         } else {
             // comprobamos login en fichero
-            String serializado;
 
             serializado=miTEUsuario.getText()+";"+miTEPasswd.getText();
-            Usuario miUsuario= new Usuario(serializado);
-            if (miControlador.comprobarLogin (miUsuario)==true){
+
+            if (miControlador.comprobarLogin (serializado)){
                 // el login es correcto hay que pasar los datos al controlador
-                miControlador.setUsuario(miUsuario);
+                miControlador.setUsuario(String.valueOf(miTEUsuario.getText()));
                 //volvemos a Mainactivity
                 finish();
             } else {
@@ -58,5 +58,13 @@ public class LoginActivity extends AppCompatActivity {
 
         //volvemos a la anterior activity si el login es correcto o informamos del error si no lo es
 
+    }
+
+    // Botón Registrarse
+    public void BTReg(View view) {
+
+        Intent miIntent = new Intent(this, NewUserActivity.class);
+        startActivity(miIntent);
+        finish();
     }
 }

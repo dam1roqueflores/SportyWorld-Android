@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        miGUI.setLUser(miControlador.getMiUsuario().getUsuario());
+        miGUI.setLUser(miControlador.getMiUsuario());
     }
 
     // Botón Loguearse

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewUserActivity">
+    <LinearLayout
+        android:id="@+id/LLNombre"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#3F51B5"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LANombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre" />
+
+        <EditText
+            android:id="@+id/TENombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca Nombre"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLApellidos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#4CAF50"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LAApellidos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Apellidos" />
+
+        <EditText
+            android:id="@+id/TEApellidos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca Apellidos"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLDNI"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#FFC107"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LADNI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="D.N.I." />
+
+        <EditText
+            android:id="@+id/TEDNI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca DNI"
+            android:inputType="text"
+            android:maxLength="9" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLemail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#00BCD4"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LAemail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="E-mail" />
+
+        <EditText
+            android:id="@+id/TEemail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca un E-mail válido"
+            android:inputType="textEmailAddress" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLNusuario"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#FF5722"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LANusuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre usuario" />
+
+        <EditText
+            android:id="@+id/TENusuarioR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca Nombre usuario"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLpasswd"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#9C27B0"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LApasswd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Contraseña" />
+
+        <EditText
+            android:id="@+id/TEpasswdR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Introduzca Contraseña"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#E91E63"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/BTRegistrar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:onClick="BTRegistrar"
+            android:text="Registrar" />
+
+    </LinearLayout>
+</LinearLayout>
