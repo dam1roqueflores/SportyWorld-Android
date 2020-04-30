@@ -6,9 +6,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +27,7 @@ public class Controlador {
     //Fichero con los datos
     static private final String FILE_DATOS = "Data.txt";
     static private final String FILE_LOG = "log.txt";
-    static private final String FILE_USUARIOS="users.txt";
+    static public final String FILE_USUARIOS="users.txt";
     static private final String FILE_LOG_USER = "logusr.txt";
     ////////////////////////////////////////
     //Estados
@@ -61,6 +64,7 @@ public class Controlador {
     static public Controlador getControlador(){
         return controlador;
     }
+
     //comportamiento para devolver las KCAL de una determinada actividad realizada
     static public String calcularKCal(int minutos, float kilos, String descrEjer) {
         String resultado;
@@ -84,6 +88,11 @@ public class Controlador {
         try {
             cargarDatos();
             cargarUsuarios();
+            /////////////////////////////////////////////
+            // creamos Toast de fichero guardado
+            Toast miT = Toast.makeText(miMainActivity,leeFichero(FILE_USUARIOS),Toast.LENGTH_LONG);
+            miT.show();
+            /////////////////////////////////////////////////
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         }
@@ -309,19 +318,58 @@ public class Controlador {
         //Añadimos nuevo usuario al fichero
         registro = miUsuario.serializar();
         try {
+            String miPath= miMainActivity.getFilesDir()+"/";
+            File fichero=new File(miPath,FILE_USUARIOS);
+            FileOutputStream fos = new FileOutputStream(fichero,true);
+            OutputStreamWriter ow = new OutputStreamWriter(fos);
+            //OutputStreamWriter ow = new OutputStreamWriter(new FileOutputStream(new File(miPath, FILE_USUARIOS),true));
+            ow.append(registro);
+            ow.flush();
+            ow.close();
 
-            FileOutputStream log = miMainActivity.openFileOutput(FILE_USUARIOS,Context.MODE_APPEND);
-            PrintWriter impresor = new PrintWriter(log,true);
-            impresor.write(registro);
-            impresor.close();
-            // creamos Toast Usuario
-            Toast miT = Toast.makeText(miMainActivity,registro,Toast.LENGTH_LONG);
+            // creamos Toast de fichero guardado
+            Toast miT = Toast.makeText(miMainActivity,leeFichero(FILE_USUARIOS),Toast.LENGTH_LONG);
             miT.show();
         } catch (Exception ex) {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
     }
+    // borra un fichero
+    public static void borrarFichero(String nomfile){
+        //File fichero = new File (nomfile);
+        Toast miToast;
 
+
+        if (miMainActivity.deleteFile(nomfile)){
+            miToast= Toast.makeText(miMainActivity,"El fichero "+nomfile+" ha sido borrado satisfactoriamente",Toast.LENGTH_LONG);
+        } else {
+            miToast= Toast.makeText(miMainActivity,"Error al borrar el fichero  "+nomfile,Toast.LENGTH_LONG);
+        }
+        miToast.show();
+    }
+    //lee un fichero y devuelve un string con su contenido
+    public static String leeFichero(String nomfile) {
+        int contador=0;
+        String mensaje="";
+        try {
+            // Abrimos el fichero en Assets para lectura
+            //File miFichero= new File(nomfile);
+            InputStream miIS = miMainActivity.openFileInput(nomfile);
+            BufferedReader bfIn = new BufferedReader(new InputStreamReader(miIS));
+            String linea = bfIn.readLine();
+
+            while (linea != null) {
+               //guarda los mensajes para devolver el resultado
+                mensaje = mensaje + contador + ": " + linea + "\n";
+                linea = bfIn.readLine();
+                contador++;
+            }
+            miIS.close();
+        } catch (Exception ex) {
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+        return mensaje;
+    }
     // dispose controlador
     public void dispose(){
         this.dispose();
@@ -340,5 +388,8 @@ public class Controlador {
     public void setUsuario(String serializado) {
        miUsuario =serializado;
     }
+
+    // leemos un fichero y lo metemos en un String
+    // recorremos fichero de lectura
 
 }

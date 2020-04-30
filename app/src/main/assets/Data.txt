@@ -1,5 +1,5 @@
 Correr;7.2
 Andar;4.5
 Bicicleta;8.0
-pelota;pelota
+pelota;7.5
 pelotilla;7.2

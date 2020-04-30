@@ -62,5 +62,15 @@ public class MainActivity extends AppCompatActivity {
         Intent miIntent = new Intent(this,LoginActivity.class);
         startActivity(miIntent);
     }
+    // botón ver fichero
+    public void BTVerFichero(View view) {
+        // creamos Toast de fichero guardado
+        Toast miT = Toast.makeText(this,miControlador.leeFichero("users.txt"),Toast.LENGTH_LONG);
+        miT.show();
+    }
+    public void BTBorrarFichero(View view) {
+
+        miControlador.borrarFichero("users.txt");
+    }
 
 }

@@ -30,8 +30,8 @@ public class NewUserActivity extends AppCompatActivity {
 
 
         //Comprobar campos nulos
-        if (miTEUsuario.getText().toString().length() == 0 || miTEPasswd.getText().toString().length() == 0) {
-            Toast miToast = Toast.makeText(this, "Usuario y Contraseña no pueden ser nulos", Toast.LENGTH_LONG);
+        if (miTEUsuario.getText().toString().length() == 0 || miTEPasswd.getText().toString().length() == 0 || miTEnombre.getText().toString().length() == 0 || miTEEmail.getText().toString().length() == 0 || miTEDNI.getText().toString().length() == 0 || miTEapellidos.getText().toString().length() == 0) {
+            Toast miToast = Toast.makeText(this, "Hay que rellenar todos los campos", Toast.LENGTH_LONG);
             miToast.show();
             // los campos obligatorios no son nulos
         } else {
@@ -41,9 +41,11 @@ public class NewUserActivity extends AppCompatActivity {
                 Toast miToast = Toast.makeText(this, "El usuario " + miTEUsuario.getText() +" ya existe", Toast.LENGTH_LONG);
                 miToast.show();
             } else {
-                  Usuario miUsuario= new Usuario(serializado);
+                Usuario miUsuario= new Usuario(serializado);
                 // registrar usuario si NO existe el usuario
                 miControlador.addUsuario(miUsuario);
+                // hay que pasar los datos del login al controlador
+                miControlador.setUsuario(String.valueOf(miTEUsuario.getText()));
                 // volvemos a la activity anterior
                 finish();
             }
