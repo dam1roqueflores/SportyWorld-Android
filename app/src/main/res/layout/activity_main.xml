@@ -144,22 +144,39 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/BTVerFichero"
+            android:id="@+id/BTVerUsuario"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="2"
-            android:onClick="BTVerFichero"
-            android:text="Ver Fichero" />
+            android:onClick="BTVerUsuarios"
+            android:text="Ver Usuarios" />
 
         <Button
-            android:id="@+id/BTBorrarFichero"
+            android:id="@+id/BTBorrarUsuario"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="2"
-            android:onClick="BTBorrarFichero"
-            android:text="Borrar Fichero" />
+            android:onClick="BTBorrarUsuarios"
+            android:text="Borrar Usuarios" />
+        <Button
+            android:id="@+id/BTVerLog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:onClick="BTVerLog"
+            android:text="Ver Log" />
 
+        <Button
+            android:id="@+id/BTBorrarLog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:onClick="BTBorrarLog"
+            android:text="Borrar Log" />
     </LinearLayout>
+
 </LinearLayout>

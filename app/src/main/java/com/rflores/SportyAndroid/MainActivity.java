@@ -62,15 +62,40 @@ public class MainActivity extends AppCompatActivity {
         Intent miIntent = new Intent(this,LoginActivity.class);
         startActivity(miIntent);
     }
-    // botón ver fichero
-    public void BTVerFichero(View view) {
+    ///////////////////////////////////////
+    // botonera
+    ///////////////////////////////////////
+    // Botón ver Usuarios
+    public void BTVerUsuarios(View view) {
         // creamos Toast de fichero guardado
-        Toast miT = Toast.makeText(this,miControlador.leeFichero("users.txt"),Toast.LENGTH_LONG);
+        verFichero ("users.txt");
+    }
+
+    //  Botón borrar usuario
+    public void BTBorrarUsuarios(View view) {
+        borrarFichero("users.txt");
+    }
+    // Botón ver Log
+    public void BTVerLog(View view) {
+        // creamos Toast de fichero guardado
+        verFichero ("log.txt");
+    }
+
+    //  Botón borrar log
+    public void BTBorrarLog(View view) {
+        borrarFichero("log.txt");
+    }
+    /////////////////////////////////////////
+    //  otros comportamientos
+    ////////////////////////////////////////
+    // Ver fichero
+    private void verFichero (String miFichero){
+        Toast miT = Toast.makeText(this,miControlador.leeFichero(miFichero),Toast.LENGTH_LONG);
         miT.show();
     }
-    public void BTBorrarFichero(View view) {
 
-        miControlador.borrarFichero("users.txt");
+    // Borrar fichero
+    private void borrarFichero(String miFichero){
+        miControlador.borrarFichero(miFichero);
     }
-
 }
