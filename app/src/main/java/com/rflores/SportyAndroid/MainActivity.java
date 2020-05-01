@@ -85,6 +85,16 @@ public class MainActivity extends AppCompatActivity {
     public void BTBorrarLog(View view) {
         borrarFichero("log.txt");
     }
+    // Botón ver Log Carga Usuarios
+    public void BTVerLogU(View view) {
+        // creamos Toast de fichero guardado
+        verFichero ("logusr.txt");
+    }
+
+    //  Botón borrar log Carga Usuarios
+    public void BTBorrarLogU(View view) {
+        borrarFichero("logusr.txt");
+    }
     /////////////////////////////////////////
     //  otros comportamientos
     ////////////////////////////////////////

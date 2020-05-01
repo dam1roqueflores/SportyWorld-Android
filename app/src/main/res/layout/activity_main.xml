@@ -24,7 +24,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Minutos" />
+            android:text="Minutos"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/TEMinutos"
@@ -51,7 +54,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Kilogramos" />
+            android:text="Kilogramos"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/TEKgr"
@@ -68,7 +74,8 @@
         android:id="@+id/CBEjercicio"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_weight="1"
+        android:textAlignment="center"/>
 
     <LinearLayout
         android:id="@+id/LLResultado"
@@ -84,13 +91,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Resultado:" />
+            android:text="Resultado:"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/LAResultado"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="18sp"
             android:text="KCal" />
     </LinearLayout>
 
@@ -102,6 +113,7 @@
         android:layout_weight="2"
         android:onClick="btCalcular"
         android:text="Calcular" />
+
     <LinearLayout
         android:id="@+id/LLUser"
         android:layout_width="match_parent"
@@ -124,59 +136,138 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Login" />
+            android:text="Login:"
+            android:textSize="18sp"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/LAUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Sin Login" />
+            android:text="Sin Login"
+            android:textColor="#FF0000" />
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/LLBotonera"
+        android:id="@+id/LLTitulo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="?attr/dialogCornerRadius"
         android:layout_weight="1"
-        android:background="#3F51B5"
+        android:background="#8BC34A"
         android:gravity="center">
+
+        <TextView
+            android:id="@+id/LATituloFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="@android:dimen/app_icon_size"
+            android:text="Gestión de ficheros"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LLBotoneraV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#8BC34A"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LAFileV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ver"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/BTVerUsuario"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="BTVerUsuarios"
-            android:text="Ver Usuarios" />
+            android:text="Usuarios" />
+
+
+        <Button
+            android:id="@+id/BTVerLog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="BTVerLog"
+            android:text="Log Ejercicios" />
+
+
+        <Button
+            android:id="@+id/BTVerLogU"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="BTVerLogU"
+            android:text="Log Usuario" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLBotoneraB"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#8BC34A"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/LAFileB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Borrar"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/BTBorrarUsuario"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="BTBorrarUsuarios"
-            android:text="Borrar Usuarios" />
-        <Button
-            android:id="@+id/BTVerLog"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:onClick="BTVerLog"
-            android:text="Ver Log" />
+            android:text="Usuarios" />
 
         <Button
             android:id="@+id/BTBorrarLog"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="BTBorrarLog"
-            android:text="Borrar Log" />
+            android:text="Log Ejercicios" />
+
+        <Button
+            android:id="@+id/BTBorrarLogU"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="BTBorrarLogU"
+            android:text="Log Usuarios" />
     </LinearLayout>
+
 
 </LinearLayout>

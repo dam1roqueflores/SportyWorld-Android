@@ -21,7 +21,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Usuario" />
+            android:text="Usuario"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/TEUsuario"
@@ -49,7 +52,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contraseña" />
+            android:text="Contraseña"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TEPasswd"
@@ -97,7 +103,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="" />
+            android:elevation="@android:dimen/app_icon_size"
+            android:text="No hay errores"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
     <LinearLayout

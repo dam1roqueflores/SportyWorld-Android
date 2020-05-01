@@ -20,7 +20,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nombre" />
+            android:text="Nombre"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TENombre"
@@ -48,7 +51,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Apellidos" />
+            android:text="Apellidos"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TEApellidos"
@@ -76,7 +82,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="D.N.I." />
+            android:text="D.N.I."
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TEDNI"
@@ -105,7 +114,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="E-mail" />
+            android:text="E-mail"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TEemail"
@@ -133,7 +145,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nombre usuario" />
+            android:text="Nombre usuario"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TENusuarioR"
@@ -161,7 +176,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contraseña" />
+            android:text="Contraseña"
+            android:elevation="@android:dimen/app_icon_size"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/TEpasswdR"
