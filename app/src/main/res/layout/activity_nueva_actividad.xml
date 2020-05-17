@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NuevaActividadActivity">
+
+
+    <LinearLayout
+        android:id="@+id/LLMinutosNA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="2"
+        android:background="#3F51B5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/LAMinutosNA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="@android:dimen/app_icon_size"
+            android:text="Minutos"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/LAKgrNA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="@android:dimen/app_icon_size"
+            android:text="Kilogramos"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/LAactividadNA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="@android:dimen/app_icon_size"
+            android:text="Ejercicio"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+<!--
+        <EditText
+            android:id="@+id/TEfecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Introduzca fecha"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/TEhora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Introduzca hora"
+            android:inputType="time" />
+        -->
+
+
+    </LinearLayout>
+    <!-- ********************************************************************** -->
+    <!--    layout fecha -->
+    <!-- ********************************************************************** -->
+    <LinearLayout
+        android:id="@+id/LLFechaPicker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#3F51B5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:text="Obtener fecha"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/LLFechaIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="?attr/dialogCornerRadius"
+            android:background="#3F51B5"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_mostrar_fecha_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="dd/mm/yyyy"
+                android:inputType="date"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <ImageButton
+                android:id="@+id/ib_obtener_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/event"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- ********************************************************************** -->
+    <!--    layout hora -->
+    <!-- ********************************************************************** -->
+    <LinearLayout
+        android:id="@+id/LLHoraPicker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#3F51B5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:text="Obtener hora"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/LLHoraIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="?attr/dialogCornerRadius"
+            android:background="#3F51B5"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_mostrar_hora_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="hh:mm"
+                android:inputType="time" />
+
+
+            <ImageButton
+
+                android:id="@+id/ib_obtener_hora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/access_time"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+  <!-- ********************************************************************** -->
+    <LinearLayout
+        android:id="@+id/LLbtOK"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="?attr/dialogCornerRadius"
+        android:layout_weight="1"
+        android:background="#3F51B5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btOk"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="btOk"
+            android:text="OK" />
+    </LinearLayout>
+
+
+</LinearLayout>

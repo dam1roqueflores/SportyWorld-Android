@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,25 +36,39 @@ public class MainActivity extends AppCompatActivity {
     public void btSalir (View view) {
         System.exit(0);
     }
+
     // Botón calcular resultado
     public void btCalcular(View view) {
         int minutos;
         float kilos;
+        Button miButton =(Button) this.findViewById(R.id.btCalcular);
+
         if (miGUI.getTminutos().getText().toString().length()==0 || miGUI.getTkilos().getText().toString().length()==0) {
             Toast miToast = Toast.makeText(this,"Minutos y Kilos no pueden ser nulos",Toast.LENGTH_LONG);
             miToast.show();
         } else {
+            // calculamos caloreias gastadas
             kilos = Float.parseFloat(String.valueOf(miGUI.getTkilos().getText()));
             minutos = Integer.parseInt(String.valueOf(miGUI.getTminutos().getText()));
             String actividad = (String) miGUI.getCactividad().getSelectedItem();
             miGUI.setLResultado(miControlador.calcularKCal(minutos, kilos, actividad));
+
+            // es cliente vip
+            if (miButton.getText()=="Registrar actividad"){
+                Intent miIntent = new Intent(this,NuevaActividadActivity.class);
+                startActivity(miIntent);
+            }
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        miGUI.setLUser(miControlador.getMiUsuario());
+        if (miControlador.getMiUsuario()!=null) {
+            miGUI.setLUser(miControlador.getMiUsuario());
+            Button miButton =(Button) this.findViewById(R.id.btCalcular);
+            miButton.setText("Registrar actividad");
+        }
     }
 
     // Botón Loguearse

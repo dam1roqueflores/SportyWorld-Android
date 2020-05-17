@@ -34,6 +34,8 @@ public class Controlador {
     ////////////////////////////////////////
     //Colección con los tipos de ejercicios disponibles
     static private TipoEjercicio TEColeccion;
+    //Coleccion con las actividades guardadas
+    static private ListaActividades COActividad;
     // gestión de Usuarios
     static  private ListaUsuarios miListaUsuarios;
     static private String miUsuario;
@@ -49,6 +51,7 @@ public class Controlador {
     // constructor privado para asegurar una sola instancia del controlador
     private Controlador(MainActivity mainActivity) {
         TEColeccion = new TipoEjercicio();
+        COActividad =new ListaActividades();
         miListaUsuarios=new ListaUsuarios();
         miUsuario=null;
         miMainActivity=mainActivity;
@@ -88,6 +91,7 @@ public class Controlador {
         try {
             cargarDatos();
             cargarUsuarios();
+            cargarActividades();
             /////////////////////////////////////////////
             // creamos Toast de fichero guardado
             Toast miT = Toast.makeText(miMainActivity,leeFichero(FILE_USUARIOS),Toast.LENGTH_LONG);
@@ -102,6 +106,12 @@ public class Controlador {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>((Context) miMainActivity,android.R.layout.simple_spinner_item, strOpciones);
         miCombo.setAdapter(adapter);
+    }
+    // Carga las actividades
+    static private void cargarActividades() {
+
+        // desserializamos las actividades
+
     }
 
     // Carga los Usuarios
@@ -185,7 +195,7 @@ public class Controlador {
         return resultado;
     }
 
-    // Carga los datos del fichero actividades
+    // Carga los datos del fichero ejercicios
     static private void cargarDatos()  {
         //variables para fechas
         Date fecha =new Date();
@@ -387,6 +397,14 @@ public class Controlador {
     ////////////////////////////////////////////////////////
     public void setUsuario(String serializado) {
        miUsuario =serializado;
+    }
+
+    public TipoEjercicio getTEColeccion() {
+        return TEColeccion;
+    }
+
+    public void getCOActividad(Actividad miActividad) {
+        return COActividad;
     }
 
     // leemos un fichero y lo metemos en un String
