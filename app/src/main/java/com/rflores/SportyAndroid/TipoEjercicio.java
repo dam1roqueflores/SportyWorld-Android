@@ -41,7 +41,7 @@ public class TipoEjercicio {
         //busco en la lista el que se llame igual. Empiezo por el primero y termino por el final
         while (!encontrado && n < listaEjercicios.size()) {   //es un if encubierto
             //busco
-            if (listaEjercicios.get(n).getDescripcion() == descr) {
+            if (descr.compareTo(listaEjercicios.get(n).getDescripcion())==0) {
                 encontrado = true;
                 miEjercicio = listaEjercicios.get(n);
             } else {

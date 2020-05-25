@@ -26,7 +26,6 @@ public class ListaUsuarios {
 
         // comprobamos que existe el usuario con la misma descripción que nos pasan
     public boolean existeUser(String descr) {
-        Usuario miUsuario=null;
         boolean encontrado=false;
         int contador=0;
 
@@ -34,10 +33,8 @@ public class ListaUsuarios {
         while (!encontrado && contador < listaUsuarios.size()) {
             if (listaUsuarios.get(contador).getUsuario().compareTo(descr)==0) {
                 encontrado = true;
-                miUsuario = listaUsuarios.get(contador);
-            } else {
-                contador= contador+1;
             }
+            contador= contador+1;
         }
         return encontrado;
     }

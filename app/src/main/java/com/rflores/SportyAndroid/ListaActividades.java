@@ -40,7 +40,7 @@ public class ListaActividades implements Serializable {
     public void serializaActividades (Context myContext){
         try {
             ObjectOutputStream oos = new ObjectOutputStream(myContext.openFileOutput(FILE_ACT, myContext.MODE_PRIVATE));
-            oos.writeObject(this);
+            oos.writeObject(listaActividades);
             oos.close();
         } catch (Exception ex) {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
@@ -48,15 +48,14 @@ public class ListaActividades implements Serializable {
     }
 
     //desserializamos la lista y devolvemos el objeto
-    public ListaActividades unSerializaActividades (Context myContext){
-        ListaActividades resultado=null;
+    public void unSerializaActividades (Context myContext){
+
         try {
             ObjectInputStream ois = new ObjectInputStream(myContext.openFileInput(FILE_ACT));
-            resultado = (ListaActividades) ois.readObject();
+            listaActividades = (ArrayList<Actividad>) ois.readObject();
             ois.close();
         } catch (Exception ex) {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
-        return resultado;
     }
 }

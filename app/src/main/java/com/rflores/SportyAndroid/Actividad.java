@@ -6,17 +6,33 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class Actividad {
-    private Time hora;
-    private Date fecha;
+public class Actividad implements  Serializable{
+    private String hora;
+    private String fecha;
     private String usuario;
     private Ejercicio ejercicio;
 
-    public Actividad (Time miHora, Date miFecha, String miUsuario, Ejercicio miEjercicio){
+    public Actividad  (String miHora, String miFecha, String miUsuario, Ejercicio miEjercicio){
         hora=miHora;
         fecha=miFecha;
         usuario=miUsuario;
         ejercicio=miEjercicio;
     }
+//////////////////////////// GETTERS
 
+    public String getHora() {
+        return hora;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public Ejercicio getEjercicio() {
+        return ejercicio;
+    }
 }

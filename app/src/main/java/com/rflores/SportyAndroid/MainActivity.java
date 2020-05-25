@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,15 +48,25 @@ public class MainActivity extends AppCompatActivity {
             Toast miToast = Toast.makeText(this,"Minutos y Kilos no pueden ser nulos",Toast.LENGTH_LONG);
             miToast.show();
         } else {
-            // calculamos caloreias gastadas
+            // calculamos calorias gastadas
             kilos = Float.parseFloat(String.valueOf(miGUI.getTkilos().getText()));
             minutos = Integer.parseInt(String.valueOf(miGUI.getTminutos().getText()));
             String actividad = (String) miGUI.getCactividad().getSelectedItem();
             miGUI.setLResultado(miControlador.calcularKCal(minutos, kilos, actividad));
 
+
             // es cliente vip
             if (miButton.getText()=="Registrar actividad"){
+                TextView aminutos = findViewById(R.id.TEMinutos);
+                TextView user = findViewById(R.id.LAUser);
+                TextView Kgr = findViewById(R.id.TEKgr);
+                Spinner ejer = findViewById(R.id.CBEjercicio);
+
                 Intent miIntent = new Intent(this,NuevaActividadActivity.class);
+                miIntent.putExtra("minutos",  aminutos.getText());
+                miIntent.putExtra("Kgr",  Kgr.getText());
+                miIntent.putExtra("user", user.getText());
+                miIntent.putExtra("strEjer", (String) miGUI.getCactividad().getSelectedItem());
                 startActivity(miIntent);
             }
         }
@@ -63,12 +74,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
         if (miControlador.getMiUsuario()!=null) {
             miGUI.setLUser(miControlador.getMiUsuario());
             Button miButton =(Button) this.findViewById(R.id.btCalcular);
             miButton.setText("Registrar actividad");
+            Button miButton1 =(Button) this.findViewById(R.id.btHistorial);
+            miButton1.setEnabled(true);
         }
+        miControlador.iniciaDatos((Spinner) findViewById(R.id.CBEjercicio));
     }
 
     // Botón Loguearse
@@ -80,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
     ///////////////////////////////////////
     // botonera
     ///////////////////////////////////////
+    // Botón ver historial
+    public void btHistorial(View view) {
+
+        Intent miIntent = new Intent(this,HistorialActivity.class);
+        startActivity(miIntent);
+    }
+
     // Botón ver Usuarios
     public void BTVerUsuarios(View view) {
         // creamos Toast de fichero guardado

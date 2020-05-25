@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NuevaActividadActivity"></activity>
+        <activity android:name=".HistorialActivity"></activity>
+        <activity android:name=".NuevaActividadActivity" />
         <activity android:name=".NewUserActivity" />
         <activity
             android:name=".LoginActivity"

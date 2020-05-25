@@ -1,6 +1,9 @@
 package com.rflores.SportyAndroid;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -8,6 +11,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -50,11 +54,11 @@ public class Controlador {
     //constructor
     // constructor privado para asegurar una sola instancia del controlador
     private Controlador(MainActivity mainActivity) {
-        TEColeccion = new TipoEjercicio();
-        COActividad =new ListaActividades();
         miListaUsuarios=new ListaUsuarios();
         miUsuario=null;
         miMainActivity=mainActivity;
+        TEColeccion = new TipoEjercicio();
+        COActividad=new ListaActividades();
     }
     /////////////////////////////////////
     // resto de comportamientos
@@ -91,7 +95,8 @@ public class Controlador {
         try {
             cargarDatos();
             cargarUsuarios();
-            cargarActividades();
+            COActividad.unSerializaActividades(miMainActivity);
+
             /////////////////////////////////////////////
             // creamos Toast de fichero guardado
             Toast miT = Toast.makeText(miMainActivity,leeFichero(FILE_USUARIOS),Toast.LENGTH_LONG);
@@ -107,12 +112,8 @@ public class Controlador {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>((Context) miMainActivity,android.R.layout.simple_spinner_item, strOpciones);
         miCombo.setAdapter(adapter);
     }
-    // Carga las actividades
-    static private void cargarActividades() {
 
-        // desserializamos las actividades
 
-    }
 
     // Carga los Usuarios
     static private void cargarUsuarios()  {
@@ -129,9 +130,11 @@ public class Controlador {
         // recorremos fichero de lectura
         try {
             // Abrimos el fichero en Assets para lectura
-            InputStream miFichero = miMainActivity.getAssets().open(FILE_USUARIOS);
+            /*InputStream miFichero = miMainActivity.getAssets().open(FILE_USUARIOS);*/
+            FileInputStream miFichero= miMainActivity.openFileInput(FILE_USUARIOS);
             BufferedReader bfIn = new BufferedReader(new InputStreamReader(miFichero));
             linea=bfIn.readLine();
+
             while (linea!=null) {
                 if(comprobarErroresUser(linea)=="") {
                     miUsuario= new Usuario(linea);
@@ -178,7 +181,7 @@ public class Controlador {
             //'hay al menos uno ;
             if (listaParametros.length > 0) {
                 //'Hay más de dos ;
-                if (listaParametros.length>2) {
+                if (listaParametros.length>6) {
                     resultado = "hay más de dos columnas";
                 } else {
                     // solo una columna
@@ -212,6 +215,7 @@ public class Controlador {
             InputStream miFichero = miMainActivity.getAssets().open(FILE_DATOS);
             BufferedReader bfIn = new BufferedReader(new InputStreamReader(miFichero));
             linea=bfIn.readLine();
+            //recorremos el fichero
             while (linea!=null) {
                 if(comprobarErrores(linea)=="") {
                     miEjercicio= new Ejercicio(linea);
@@ -228,7 +232,7 @@ public class Controlador {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
 
-        //escribimos log Actividades
+        //escribimos log ejercicios
         if (mensaje != "") {
             try {
                 FileOutputStream log = miMainActivity.openFileOutput(FILE_LOG,Context.MODE_APPEND);
@@ -328,11 +332,8 @@ public class Controlador {
         //Añadimos nuevo usuario al fichero
         registro = miUsuario.serializar();
         try {
-            String miPath= miMainActivity.getFilesDir()+"/";
-            File fichero=new File(miPath,FILE_USUARIOS);
-            FileOutputStream fos = new FileOutputStream(fichero,true);
+            FileOutputStream fos = miMainActivity.openFileOutput(FILE_USUARIOS,miMainActivity.MODE_APPEND);
             OutputStreamWriter ow = new OutputStreamWriter(fos);
-            //OutputStreamWriter ow = new OutputStreamWriter(new FileOutputStream(new File(miPath, FILE_USUARIOS),true));
             ow.append(registro);
             ow.flush();
             ow.close();
@@ -384,6 +385,9 @@ public class Controlador {
     public void dispose(){
         this.dispose();
     }
+    public Context getContext() {
+        return miMainActivity;
+    }
     ////////////////////////////////////////////////////////
     //      GETTERS
     ////////////////////////////////////////////////////////
@@ -391,7 +395,9 @@ public class Controlador {
     public static String getMiUsuario() {
         return miUsuario;
     }
-
+    public ListaActividades getCOActividad() {
+        return COActividad;
+    }
     /////////////////////////////////////////////////////////////
     //      SETTERS
     ////////////////////////////////////////////////////////
@@ -403,11 +409,6 @@ public class Controlador {
         return TEColeccion;
     }
 
-    public void getCOActividad(Actividad miActividad) {
-        return COActividad;
-    }
 
-    // leemos un fichero y lo metemos en un String
-    // recorremos fichero de lectura
 
 }

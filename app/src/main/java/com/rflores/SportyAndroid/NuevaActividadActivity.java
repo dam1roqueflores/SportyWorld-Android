@@ -2,8 +2,10 @@ package com.rflores.SportyAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +33,7 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int year = c.get(Calendar.YEAR);
 
-    //Widgets
+    //Widgets de fecha
     EditText etFecha;
     ImageButton ibObtenerFecha;
 
@@ -39,7 +41,11 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
     final int hora = c.get(Calendar.HOUR_OF_DAY);
     final int minuto = c.get(Calendar.MINUTE);
 
-    //Widgets
+    // Descripción del ejercicio y usuario para crear nuestro ejercicio asociado a la actividad
+    private String strEjercicio=null;
+    private String strUser=null;
+
+    //Widgets de hora
     EditText etHora;
     ImageButton ibObtenerHora;
 
@@ -47,18 +53,19 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_actividad);
-    // carga los labels con los editext de la actividad principal
+
+    // carga los labels con los editext de la actividad principal con parámetros de android
+        // getExtras y setExtras
         TextView miLAMinutosNA = findViewById(R.id.LAMinutosNA);
-        TextView miLAMinutos = findViewById(R.id.TEMinutos);
-        miLAMinutosNA.setText(miLAMinutos.getText());
+        miLAMinutosNA.setText(getIntent().getExtras().getString("minutos"));
 
         TextView miLAKgrNA = findViewById(R.id.LAKgrNA);
-        TextView miLAKgr = findViewById(R.id.TEKgr);
-        miLAKgrNA.setText(miLAKgr.getText());
+        miLAKgrNA.setText(getIntent().getExtras().getString("Kgr"));
 
-        TextView miLAUserNA = findViewById(R.id.LAUser);
-        TextView miLAUser = findViewById(R.id.TEUsuario);
-        miLAUserNA.setText(miLAUser.getText());
+
+
+       strEjercicio=getIntent().getExtras().getString("strEjer");
+       strUser=getIntent().getExtras().getString("user");
 
     //Widget EditText donde se mostrara la fecha obtenida
     etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);
@@ -78,38 +85,62 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
     /////////////////// listener
     @Override
     public void onClick(View v) {
+        AlertDialog.Builder bldr = new AlertDialog.Builder(this);
+        bldr.setTitle("Error");
+        bldr.setPositiveButton("Aceptar",null);
+        bldr.setMessage("Sin mensaje");
+        AlertDialog dialog=bldr.create();
+
         switch (v.getId()){
             case R.id.ib_obtener_fecha:
                 obtenerFecha();
                 break;
             case R.id.ib_obtener_hora:
                 obtenerHora();
+                break;
+            case R.id.btOk:
+                btOk();
+                break;
+            default:
+                bldr.setMessage("No existe ese id");
+                dialog.show();
         }
     }
 /////////////////////////////////   Botones
-    private void btOk (View view) {
+    private void btOk ( ){
         // variables de la GUI
         TextView miLAMinutos = findViewById(R.id.LAMinutosNA);
         TextView miLAKgr = findViewById(R.id.LAKgrNA);
-        TextView miLAUser = findViewById(R.id.LAUser);
         TextView miFechaPicker = findViewById(R.id.et_mostrar_fecha_picker);
         EditText miHoraPicker = findViewById(R.id.et_mostrar_hora_picker);
-        Spinner miCombo = findViewById(R.id.CBEjercicio);
+
         // variables otras
         Controlador miControlador = Controlador.getControlador();
         Ejercicio miEjercicio;
-        miEjercicio = miControlador.getTEColeccion().getEjercicioByDescr((String) miCombo.getSelectedItem());
-        Actividad miActividad=new Actividad((Time) miHoraPicker.getText(),(Date) miFechaPicker.getText(),(String) miLAUser.getText(),miEjercicio);;
-
+        miEjercicio = miControlador.getTEColeccion().getEjercicioByDescr(strEjercicio);
+        String miHora= String.valueOf(miHoraPicker.getText());
+        String miFecha = String.valueOf(miFechaPicker.getText());
+        String miUser= strUser;
+        // creamos la actividad
+        Actividad miActividad=new Actividad(miHora,miFecha,miUser,miEjercicio);;
+        // guardamos la actividad
+        miControlador.getCOActividad().addActividad(miActividad);
         //Comprobar campos nulos
-        if (miLAMinutos.getText().toString().length() == 0 || miLAKgr.getText().toString().length() == 0 || miLAUser.getText().toString().length() == 0 || miFechaPicker.getText().toString().length() == 0 || miHoraPicker.getText().toString().length() == 0) {
+        if (miFechaPicker.getText().toString().length() == 0 || miHoraPicker.getText().toString().length() == 0) {
             Toast miToast = Toast.makeText(this, "Hay que rellenar todos los campos", Toast.LENGTH_LONG);
             miToast.show();
             // los campos obligatorios no son nulos
         } else {
+            // obtenemos la lista del controlador
+            ListaActividades miListaAct = miControlador.getCOActividad();
+            // creamos actividad
+            miActividad=new Actividad(String.valueOf(miHoraPicker.getText()), String.valueOf(miFechaPicker.getText()),(String) strUser, miEjercicio);
             // añadimos actividad
-            miActividad=new Actividad((Time) miHoraPicker.getText(),(Date) miFechaPicker.getText(),(String) miLAUser.getText(), miEjercicio);
-            miControlador.getCOActividad(miActividad);
+            miListaAct.addActividad(miActividad);
+            //serializamos la lista
+            miListaAct.serializaActividades(miControlador.getContext());
+            // el login es correcto hay que pasar los datos al controlador
+            miControlador.setUsuario(String.valueOf(strUser));
             // volvemos a la activity anterior
             finish();
             }

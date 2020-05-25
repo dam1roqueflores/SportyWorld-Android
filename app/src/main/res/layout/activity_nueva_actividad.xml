@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/llNuevaActividad"
     tools:context=".NuevaActividadActivity">
 
 
@@ -111,7 +112,8 @@
                 android:ems="10"
                 android:hint="dd/mm/yyyy"
                 android:inputType="date"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:autofillHints="" />
 
             <ImageButton
                 android:id="@+id/ib_obtener_fecha"
@@ -162,7 +164,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="hh:mm"
-                android:inputType="time" />
+                android:inputType="time"
+                android:autofillHints="" />
 
 
             <ImageButton
@@ -191,7 +194,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:onClick="btOk"
+            android:onClick="onClick"
             android:text="OK" />
     </LinearLayout>
 

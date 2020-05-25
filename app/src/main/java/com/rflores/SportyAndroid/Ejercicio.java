@@ -1,6 +1,8 @@
 package com.rflores.SportyAndroid;
 
-public class Ejercicio {
+import java.io.Serializable;
+
+public class Ejercicio implements Serializable {
     //Estado
     String descripcion;
     float met;

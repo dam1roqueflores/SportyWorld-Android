@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             // comprobamos login en fichero
 
             serializado=miTEUsuario.getText()+";"+miTEPasswd.getText();
-
+            //volvemos a la anterior activity si el login es correcto o informamos del error si no lo es
             if (miControlador.comprobarLogin (serializado)){
                 // el login es correcto hay que pasar los datos al controlador
                 miControlador.setUsuario(String.valueOf(miTEUsuario.getText()));
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        //volvemos a la anterior activity si el login es correcto o informamos del error si no lo es
+
 
     }
 
