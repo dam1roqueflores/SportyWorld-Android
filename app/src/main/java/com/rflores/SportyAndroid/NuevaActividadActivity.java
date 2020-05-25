@@ -85,6 +85,7 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
     /////////////////// listener
     @Override
     public void onClick(View v) {
+        // Crea un dialog Box
         AlertDialog.Builder bldr = new AlertDialog.Builder(this);
         bldr.setTitle("Error");
         bldr.setPositiveButton("Aceptar",null);
@@ -124,7 +125,7 @@ public class NuevaActividadActivity extends AppCompatActivity implements View.On
         // creamos la actividad
         Actividad miActividad=new Actividad(miHora,miFecha,miUser,miEjercicio);;
         // guardamos la actividad
-        miControlador.getCOActividad().addActividad(miActividad);
+       // miControlador.getCOActividad().addActividad(miActividad);
         //Comprobar campos nulos
         if (miFechaPicker.getText().toString().length() == 0 || miHoraPicker.getText().toString().length() == 0) {
             Toast miToast = Toast.makeText(this, "Hay que rellenar todos los campos", Toast.LENGTH_LONG);
